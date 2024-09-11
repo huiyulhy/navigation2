@@ -163,13 +163,13 @@ dwb_msgs::msg::Trajectory2D StandardTrajectoryGenerator::generateTrajectory(
   double running_time = 0.0;
   std::vector<double> steps = getTimeSteps(cmd_vel);
   traj.poses.push_back(start_pose);
-  bool firstVel = false;
+  bool first_vel = false;
   for (double dt : steps) {
     //  calculate velocities
     vel = computeNewVelocity(cmd_vel, vel, dt);
-    if(!firstVel && limit_vel_cmd_in_traj_){
+    if(!first_vel && limit_vel_cmd_in_traj_){
         traj.velocity = vel;
-        firstVel = true;
+        first_vel = true;
     }
 
     //  update the position of the robot using the velocities passed in
